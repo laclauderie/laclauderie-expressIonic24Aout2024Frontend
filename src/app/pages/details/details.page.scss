@@ -1,0 +1,34 @@
+.equal-width-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .left-column {
+    border-right: 1px solid #ccc; /* Common border at the middle */
+    padding-right: 10px; /* Optional: Adjust padding as needed */
+  }
+  
+  .right-column {
+    padding-left: 10px; /* Optional: Adjust padding as needed */
+  }
+  
+  .scroll-list {
+    max-height: 9rem; /* Adjust this value as needed to fit 3 items */
+    overflow-y: auto;
+  }
+
+  .highlighted {
+    --ion-item-background: lightblue;
+  }
+
+  .highlighted-category {
+    --ion-item-background: lightpink;
+  }
+  
+  .highlighted-product {
+    --ion-item-background: lightgreen
+  }
+
+  .highlighted-detail {
+    --ion-item-background: lightgrey;
+  }

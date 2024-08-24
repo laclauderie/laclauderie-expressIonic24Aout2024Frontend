@@ -1,0 +1,87 @@
+<ion-split-pane contentId="dashboard-content" when="lg">
+  <!-- Left menu (always available) -->
+  <ion-menu contentId="dashboard-content" side="start" menuId="dashboard-menu">
+    <ion-header>
+      <ion-toolbar color="success">
+        <ion-title>{{ pageTitle }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle autoHide="false">
+          <ion-item
+            [routerLink]="['/dashboard/business-owner']"
+            (click)="setSelectedMenuItem('business-owner')"
+            [class.selected-menu-item]="selectedMenuItem === 'business-owner'"
+          >
+            Business Owner
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle autoHide="false">
+          <ion-item
+            [routerLink]="['/dashboard/payments']"
+            (click)="setSelectedMenuItem('payments')"
+            [class.selected-menu-item]="selectedMenuItem === 'payments'"
+          >
+            Payments
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle autoHide="false">
+          <ion-item
+            [routerLink]="['/dashboard/commerces']"
+            (click)="setSelectedMenuItem('commerces')"
+            [class.selected-menu-item]="selectedMenuItem === 'commerces'"
+          >
+            Commerces
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle autoHide="false">
+          <ion-item
+            [routerLink]="['/dashboard/categories']"
+            (click)="setSelectedMenuItem('categories')"
+            [class.selected-menu-item]="selectedMenuItem === 'categories'"
+          >
+            Categories
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle autoHide="false">
+          <ion-item
+            [routerLink]="['/dashboard/products']"
+            (click)="setSelectedMenuItem('products')"
+            [class.selected-menu-item]="selectedMenuItem === 'products'"
+          >
+            Products
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle autoHide="false">
+          <ion-item
+            [routerLink]="['/dashboard/details']"
+            (click)="setSelectedMenuItem('details')"
+            [class.selected-menu-item]="selectedMenuItem === 'details'"
+          >
+            Details
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle autoHide="false">
+          <ion-item
+            [routerLink]="['/dashboard/villes-commerces']"
+            (click)="logoutAndNavigate()"
+            [class.selected-menu-item]="selectedMenuItem === 'villes-commerces'"
+          >
+            Villes Commerces
+          </ion-item>
+        </ion-menu-toggle>
+        
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Main content -->
+  <ion-router-outlet id="dashboard-content"></ion-router-outlet>
+</ion-split-pane>

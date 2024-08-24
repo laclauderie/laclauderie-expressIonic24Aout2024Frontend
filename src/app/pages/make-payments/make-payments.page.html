@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Make Payment</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="paymentForm">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Payment Details</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-input
+            label="Amount"
+            label-placement="stacked"
+            formControlName="amount"
+            type="number"
+            readonly
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-select
+            formControlName="duration_months"
+            (ionChange)="onDurationChange()"
+            placeholder="Select Duration"
+            label="Duration"
+            label-placement="stacked"
+          >
+            <ion-select-option value="duration0">0.1 Month</ion-select-option>
+            <ion-select-option value="duration1">0.5 Month</ion-select-option>
+            <ion-select-option value="duration2">1 Month</ion-select-option>
+            <ion-select-option value="duration3">3 Months</ion-select-option>
+            <ion-select-option value="duration4">6 Months</ion-select-option>
+            <ion-select-option value="duration5">9 Months</ion-select-option>
+            <ion-select-option value="duration6">12 Months</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Payment Date</ion-label>
+          <ion-datetime
+            formControlName="payment_date"
+            displayFormat="MMM DD, YYYY HH:mm"
+            pickerFormat="MMM DD, YYYY HH:mm"
+            minuteInterval="1"
+          ></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-input
+            label="Expiry Date"
+            label-placement="stacked"
+            formControlName="expiry_date"
+            type="text"
+            readonly
+          ></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" type="submit" color="primary" shape="round" [disabled]="loading"  (click)="onSubmit()">
+      Submit Payment
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

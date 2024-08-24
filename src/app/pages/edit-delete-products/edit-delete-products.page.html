@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModal()" color="primary">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Edit Product</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="updateProduct()" color="primary">Update</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Card for Displaying Selected Product Image -->
+  <ion-card *ngIf="productImage">
+    <ion-card-header>
+      <ion-card-title>Product Image</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Display selected image preview -->
+      <img
+        [src]="productImage"
+        alt="Product Image"
+        style="width: 100%; height: auto"
+      />
+    </ion-card-content>
+  </ion-card>   
+
+  <!-- Reactive Form Section -->
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="productForm">
+        <ion-item>
+          <ion-label position="stacked">Product Name</ion-label>
+          <ion-input formControlName="product_name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Price</ion-label>
+          <ion-input formControlName="price" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Reference</ion-label>
+          <ion-input formControlName="reference"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Description</ion-label>
+          <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Image</ion-label>
+          <ion-input formControlName="image_product" readonly></ion-input>
+          <ion-button (click)="selectImage()" slot="end">
+            <ion-icon name="camera"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button 
+      expand="full" 
+      color="danger" 
+      (click)="deleteProduct()"
+    >
+      Delete Category
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

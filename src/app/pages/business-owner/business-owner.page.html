@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Business Owner</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openEditBusinessOwner()" color="primary">
+        <!-- <ion-icon name="create-outline"></ion-icon> -->
+         edit
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngIf="businessOwnerImage">
+    <ion-img [src]="businessOwnerImage" alt="Owner Image"></ion-img>
+  </ion-item>
+  <ion-item *ngIf="businessOwner">
+    <ion-label position="stacked">Name</ion-label>
+    <ion-input [value]="businessOwner.name" readonly></ion-input>
+  </ion-item>
+  <ion-item *ngIf="businessOwner">
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input [value]="businessOwner.email" readonly type="email"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="businessOwner">
+    <ion-label position="stacked">Adresse</ion-label>
+    <ion-input [value]="businessOwner.adresse" readonly></ion-input>
+  </ion-item>
+  <ion-item *ngIf="businessOwner">
+    <ion-label position="stacked">Telephone 1</ion-label>
+    <ion-input [value]="businessOwner.telephone1" readonly></ion-input>
+  </ion-item>
+  <ion-item *ngIf="businessOwner">
+    <ion-label position="stacked">Telephone 2</ion-label>
+    <ion-input [value]="businessOwner.telephone2" readonly></ion-input>
+  </ion-item>
+  <ion-item *ngIf="businessOwner">
+    <ion-label position="stacked">Monthly Fee Paid</ion-label>
+    <ion-toggle [checked]="businessOwner.monthly_fee_paid" disabled></ion-toggle>
+  </ion-item>
+</ion-content>

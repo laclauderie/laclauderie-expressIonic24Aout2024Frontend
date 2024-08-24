@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Products</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openEditDeleteProductsPage()" color="primary" [disabled]="categories.length === 0">
+        Update
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Grid Layout for Commerces, Categories, Products, and Product Details -->
+  <ion-grid>
+    <!-- Row 1: List of Commerces and Categories -->
+    <ion-row class="equal-width-columns">
+      <!-- Left Column: List of Commerces -->
+      <ion-col>
+        Commerces
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let commerce of commerces; let i = index" 
+            [ngClass]="{'highlighted': selectedCommerceIndex === i}"
+            (click)="selectCommerce(i)">
+            {{ commerce.commerce_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <!-- Right Column: List of Categories -->
+      <ion-col>
+        Categories
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let category of categories; let i = index" 
+            [ngClass]="{'highlighted-category': selectedCategoryIndex === i}"
+            (click)="selectCategory(i)">
+            {{ category.category_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 2: List of Products -->
+    <ion-row>
+      <ion-col>
+        <!-- Display message if no products are found -->
+
+        <ion-item *ngIf="products.length === 0">
+          No products found for this category.
+        </ion-item>
+
+        <!-- List of Products -->
+        Products
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let product of products; let i = index" 
+            [ngClass]="{'highlighted-product': selectedProductIndex === i}"
+            (click)="selectProduct(i)">
+            {{ product.product_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 3: Product Image -->
+    <ion-row>
+      <ion-col>
+        <ion-card *ngIf="selectedProduct && selectedProduct.image_product">
+          <ion-card-header>
+            <ion-card-title>Product Image</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <img [src]="selectedProductImage" alt="Product Image" />
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 4: Product Details Form -->
+    <ion-row>
+      <ion-col>
+        <ion-card *ngIf="selectedProduct">
+          <ion-card-header>
+            <ion-card-title>Product Details</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="productForm">
+              <ion-item>
+                <ion-label position="floating">Product Name</ion-label>
+                <ion-input formControlName="product_name" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Price</ion-label>
+                <ion-input formControlName="price" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Reference</ion-label>
+                <ion-input formControlName="reference" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Description</ion-label>
+                <ion-input formControlName="description" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Category ID</ion-label>
+                <ion-input formControlName="category_id" readonly></ion-input>
+              </ion-item>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCreateProductsPage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

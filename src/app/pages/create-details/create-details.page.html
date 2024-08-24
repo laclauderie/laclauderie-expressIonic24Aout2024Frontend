@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- Cancel Button -->
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" color="primary">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Create Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Card for Displaying Selected Detail Image -->
+  <ion-card *ngIf="detailImage">
+    <ion-card-header>
+      <ion-card-title>Detail Image</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Display selected image preview -->
+      <img
+        [src]="detailImage"
+        alt="Detail Image"
+        style="width: 100%; height: auto"
+      />
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Reactive Form Section -->
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="detailForm">
+        <ion-item>
+          <ion-label position="stacked">Detail Name</ion-label>
+          <ion-input formControlName="detail_name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Description</ion-label>
+          <ion-textarea formControlName="description"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Image</ion-label>
+          <ion-input formControlName="image_detail" readonly></ion-input>
+          <ion-button (click)="selectImage()" slot="end">
+            <ion-icon name="camera"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <!-- Create Detail Button -->
+    <ion-button
+      expand="full"
+      color="primary"
+      (click)="createDetail()"
+    >
+      Create Detail
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

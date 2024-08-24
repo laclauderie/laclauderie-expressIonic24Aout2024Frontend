@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()" color="primary">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Business Owner</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveBusinessOwner()" color="primary">
+        Update
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Display the business owner image -->
+  <ion-item *ngIf="businessOwnerImage">
+    <ion-img [src]="businessOwnerImage" alt="Business Owner Image"></ion-img>
+  </ion-item>
+
+  <form [formGroup]="businessOwnerForm">
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Address</ion-label>
+      <ion-input formControlName="adresse"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telephone 1</ion-label>
+      <ion-input formControlName="telephone1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telephone 2</ion-label>
+      <ion-input formControlName="telephone2"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Image Owner</ion-label>
+      <ion-input formControlName="image_owner" readonly></ion-input>
+      <ion-button (click)="selectImage()" slot="end">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <!-- Uncomment and modify if you have delete functionality -->
+  <ion-toolbar color="danger">
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteMyBusinessOwner()">
+        <ion-icon name="trash-outline"></ion-icon>
+        Delete
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

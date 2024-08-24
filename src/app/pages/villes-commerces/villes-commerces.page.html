@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Commerces</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/register']" color="primary">
+        Register
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+ 
+  <!-- Search Bar -->
+  <ion-searchbar 
+  [(ngModel)]="searchQuery"
+  (ionInput)="onSearch()"
+  placeholder="Search commerces by name or service">
+</ion-searchbar>
+
+  <div class="commerces-grid">
+    <ion-card mode="ios" *ngFor="let commerce of filteredCommerces" (click)="showCommerceCategories(commerce)">
+      <ion-card-content>
+        
+        <div class="item-img">
+          <img [src]="commerce.imageSrc" />
+        </div>
+
+        <div class="item-info">
+          <p class="commerce-name">{{ commerce.commerce_name }}</p>
+          <p class="commerce-services">{{ commerce.services }}</p>
+          <p class="commerce-ville">{{ commerce.ville_name }}</p>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="clearFilter()" color="primary" expand="full">Clear Filter</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="displayVilles()" color="primary">Villes</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

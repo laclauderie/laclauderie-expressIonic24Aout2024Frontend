@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openEditDeleteDetailsPage()" color="primary" [disabled]="categories.length === 0">
+        Update
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Grid Layout for Commerces, Categories, Products, and Product Details -->
+  <ion-grid>
+    <!-- Row 1: List of Commerces and Categories -->
+    <ion-row class="equal-width-columns">
+      <!-- Left Column: List of Commerces -->
+      <ion-col>
+        Commerces
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let commerce of commerces; let i = index" 
+            [ngClass]="{'highlighted': selectedCommerceIndex === i}"
+            (click)="selectCommerce(i)">
+            {{ commerce.commerce_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <!-- Right Column: List of Categories -->
+      <ion-col>
+        Categories
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let category of categories; let i = index" 
+            [ngClass]="{'highlighted-category': selectedCategoryIndex === i}"
+            (click)="selectCategory(i)">
+            {{ category.category_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 2: List of Products -->
+    <ion-row>
+      <ion-col>
+        <!-- Display message if no products are found -->
+
+       <!--  <ion-item *ngIf="products.length === 0">
+          No products found for this category.
+        </ion-item> -->
+
+        <!-- List of Products -->
+        Products
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let product of products; let i = index" 
+            [ngClass]="{'highlighted-product': selectedProductIndex === i}"
+            (click)="selectProduct(i)">
+            {{ product.product_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <!-- Right Column: List of Details -->
+      <ion-col>
+        <!-- Display message if no details are found -->
+       <!--  <ion-item *ngIf="details.length === 0">
+          No details found for this product.
+        </ion-item> -->
+
+        <!-- List of Details -->
+        Details
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let detail of details; let i = index" 
+            [ngClass]="{'highlighted-detail': selectedDetailIndex === i}"
+            (click)="selectDetail(i)">
+            {{ detail.detail_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 3: Detail Image -->
+    <ion-row>
+      <ion-col>
+        <ion-card *ngIf="selectedDetail && selectedDetail.image_detail">
+          <ion-card-header>
+            <ion-card-title>Detail Image</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <img [src]="selectedDetailImage" alt="Detail Image" />
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 4: Product Details Form -->
+    <ion-row>
+      <ion-col>
+        <ion-card *ngIf="selectedDetail">
+          <ion-card-header>
+            <ion-card-title>Form Details</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="detailForm">
+              <ion-item>
+                <ion-label position="floating">Detail Name</ion-label>
+                <ion-input formControlName="detail_name" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Description</ion-label>
+                <ion-input formControlName="description" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Product ID</ion-label>
+                <ion-input formControlName="product_id" readonly></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Image Detail</ion-label>
+                <ion-input formControlName="image_detail" readonly></ion-input>
+              </ion-item>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCreateDetailsPage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

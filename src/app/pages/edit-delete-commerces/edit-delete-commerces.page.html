@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" color="primary">
+        <ion-label>Cancel</ion-label>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit/Delete Commerce</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="submitForm()" color="primary">Update</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content [fullscreen]="true">
+  
+  <!-- Display the business owner image -->
+  <ion-item *ngIf="commerceImage">
+    <ion-img [src]="commerceImage" alt="Commerce Image"></ion-img>
+  </ion-item>
+
+  <form [formGroup]="commerceForm">
+    <ion-item>
+      <ion-label position="stacked">Commerce name</ion-label>
+      <ion-input formControlName="commerce_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Ville</ion-label>
+      <ion-select formControlName="ville_name">
+        <ion-select-option *ngFor="let ville of villes" [value]="ville.ville_name">{{ ville.ville_name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Services</ion-label>
+      <ion-textarea formControlName="services"></ion-textarea>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Image</ion-label>
+      <ion-input formControlName="image_commerce" readonly></ion-input>
+      <ion-button (click)="selectImage()" slot="end">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>
+    </ion-item>
+    
+  </form>
+
+  
+</ion-content>
+
+<ion-footer>
+  <!-- Uncomment and modify if you have delete functionality -->
+  <ion-toolbar color="danger">
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteCommerce()">
+        <ion-icon name="trash-outline"></ion-icon>
+        Delete commerce
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

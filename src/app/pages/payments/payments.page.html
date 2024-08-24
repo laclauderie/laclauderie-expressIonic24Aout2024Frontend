@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Payments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!hasMadePayment; else showPaymentDetails" class="no-payment-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>No Payments Made Yet</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>You haven't made any payments yet.</p>
+      </ion-card-content>
+    </ion-card>
+    <!-- Floating button -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="primary" size="small" (click)="openMakePaymentModal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>    
+  </div>
+
+  <ng-template #showPaymentDetails>
+    <form [formGroup]="paymentForm">
+      <ion-item>
+        <ion-label position="stacked">Amount</ion-label>
+        <ion-input formControlName="amount" type="number" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Payment Date</ion-label>
+        <ion-input formControlName="payment_date" type="text" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Expiry Date</ion-label>
+        <ion-input formControlName="expiry_date" type="text" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Days Remaining</ion-label>
+        <ion-input formControlName="days_remaining" type="number" readonly></ion-input>
+      </ion-item>
+    </form>
+  </ng-template>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button 
+      expand="full" 
+      color="secondary"
+      shape="round" 
+      (click)="openRenewPaymentModal()"
+      [disabled]="!hasMadePayment">
+      Renew Payment
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>  

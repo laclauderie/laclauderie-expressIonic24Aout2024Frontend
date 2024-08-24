@@ -1,0 +1,22 @@
+page-register {
+    .redirect-link {
+      p {
+        font-size: 0.9rem;
+        color: #666;
+        a {
+          color: #3880ff;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  
+    .custom-button {
+      width: 80%;
+      margin: auto;
+      margin-top: 20px; /* Increase distance between password and button */
+    }
+  }
+  

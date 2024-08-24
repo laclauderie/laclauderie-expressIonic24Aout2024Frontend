@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="commerces-grid">
+    <ion-card mode="ios" *ngFor="let detail of details">
+      <ion-card-content>
+        <div class="item-img">
+          <img [src]="detail.imageSrc" alt="{{ detail.detail_name }}" />
+        </div>
+        <div class="item-info">
+          <p class="commerce-name">{{ detail.detail_name }}</p>
+          <p class="detail-description">{{ detail.description }}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content> 

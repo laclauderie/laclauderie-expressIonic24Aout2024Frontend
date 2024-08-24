@@ -1,0 +1,8 @@
+.commerce-list {
+  max-height: calc(3 * 56px); 
+  overflow-y: auto;
+}
+
+.selected-commerce {
+  --ion-item-background: rgb(198, 217, 245) !important; /* Ensure it overrides other styles */
+}

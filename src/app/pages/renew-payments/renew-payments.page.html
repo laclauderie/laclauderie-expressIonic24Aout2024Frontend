@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Renew Payment</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()" color="primary">Cancel</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="loading" (click)="onSubmit()" color="primary">Submit</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="paymentForm">
+    <!-- Duration field with ion-select -->
+    <ion-item>
+      <ion-label position="stacked">Duration</ion-label>
+      <ion-select formControlName="duration">
+        <ion-select-option *ngFor="let value of durationValues" [value]="value">
+          {{ value }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <!-- Amount field as readonly -->
+    <ion-item>
+      <ion-label position="stacked">Amount</ion-label>
+      <ion-input formControlName="amount" readonly></ion-input>
+    </ion-item>
+
+    <!-- Editable Payment Date field -->
+    <ion-item>
+      <ion-label position="stacked">Payment Date</ion-label>
+      <ion-datetime
+        formControlName="payment_date"
+        displayFormat="MMM DD, YYYY HH:mm"
+        pickerFormat="MMM DD, YYYY HH:mm"
+        minuteInterval="1"
+      ></ion-datetime>
+    </ion-item>
+
+    <!-- Editable Expiry Date field -->
+    <ion-item>
+      <ion-label position="stacked">Expiry Date</ion-label>
+      <ion-input formControlName="expiry_date" placeholder="Enter expiry date"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>

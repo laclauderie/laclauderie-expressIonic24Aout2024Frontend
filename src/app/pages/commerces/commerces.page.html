@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-button (click)="onCancel()" color="primary" [disabled]="commerces.length === 0">
+        <ion-label>Cancel</ion-label>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-title>Commerces</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openEditCommerceModal()" color="primary" [disabled]="commerces.length === 0">
+        Edit
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <!-- Row 1: List of commerces -->
+    
+    <ion-row>
+      <ion-col>
+        Commerces
+        <ion-list *ngIf="commerces.length > 0" class="commerce-list">
+          <ion-item
+            *ngFor="let commerce of commerces; let i = index"
+            (click)="selectCommerce(i)"
+            [ngClass]="{'selected-commerce': i === selectedCommerceIndex}"
+          >
+            <ion-label>
+              <h2>{{ commerce.commerce_name }}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-list *ngIf="commerces.length === 0">
+          <ion-item>
+            <ion-label>
+              <h2>No commerces found</h2>
+              <p>Please create a new commerce.</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 2: Commerce image -->
+    <ion-row>
+      <ion-col>
+        <div *ngIf="selectedCommerce">
+          <ion-card>
+            <ion-card-content>
+              <img
+                *ngIf="selectedCommerceImage"
+                [src]="selectedCommerceImage"
+                alt="Commerce Image"
+              />
+              <p *ngIf="!selectedCommerceImage">No image available</p>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+    <!-- Row 3: Commerce details in a reactive form -->
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="commerceForm">
+          <ion-item>
+            <ion-label position="stacked">Name</ion-label>
+            <ion-input formControlName="commerce_name" readonly></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Services</ion-label>
+            <ion-textarea
+              formControlName="services"
+              readonly
+              class="scrollable-textarea"
+            ></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Ville</ion-label>
+            <ion-input formControlName="ville_name" readonly></ion-input>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- FAB Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCreateCommerceModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

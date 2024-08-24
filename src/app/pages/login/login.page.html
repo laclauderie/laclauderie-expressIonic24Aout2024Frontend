@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <!-- Email Field -->
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email" required></ion-input>
+      </ion-item>
+      <ion-note *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" color="danger">
+        Email is required
+      </ion-note>
+      <ion-note *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" color="danger">
+        Enter a valid email
+      </ion-note>
+
+      <!-- Password Field -->
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input [type]="passwordType" formControlName="password" required></ion-input>
+        <ion-icon name="{{ passwordToggleIcon }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+      </ion-item>
+      <ion-note *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" color="danger">
+        Password is required
+      </ion-note>
+    </ion-list>
+
+    <!-- Login Button -->
+    <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">Login</ion-button>
+  </form>
+
+  <!-- Forget Password Link -->
+  <div class="ion-text-center ion-margin-top">
+    <a routerLink="/forgot-password">Forgot password?</a>
+  </div>
+
+  <!-- Error Message Display -->
+  <ion-note *ngIf="errorMessage" color="danger" class="ion-text-center ion-padding-top">
+    {{ errorMessage }}
+  </ion-note>
+</ion-content> 
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title size="small" class="ion-text-center">© Your App Name</ion-title>
+  </ion-toolbar>
+</ion-footer>

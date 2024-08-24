@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Commerce Name Section -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Commerce</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Name:</ion-label>
+        <ion-text>{{ commerceForm.get('commerce_name')?.value }}</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Business Owner Section -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Business Owner</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Name:</ion-label>
+        <ion-text>{{ commerceForm.get('business_owner.name')?.value }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Address:</ion-label>
+        <ion-text>{{ commerceForm.get('business_owner.adresse')?.value }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email:</ion-label>
+        <ion-text>{{ commerceForm.get('business_owner.email')?.value }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Phone 1:</ion-label>
+        <ion-text>{{ commerceForm.get('business_owner.telephone1')?.value }}</ion-text>
+      </ion-item>
+      <ion-item *ngIf="commerceForm.get('business_owner.telephone2')?.value">
+        <ion-label position="stacked">Phone 2:</ion-label>
+        <ion-text>{{ commerceForm.get('business_owner.telephone2')?.value }}</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- List of Categories Section -->
+  <div class="commerces-grid">
+    <ion-card mode="ios" *ngFor="let category of categories" (click)="showCategoryProducts(category)">
+      <ion-card-content>
+        <div class="item-img">
+          <img [src]="category.imageSrc" alt="{{ category.category_name }}" />
+        </div>
+        <div class="item-info">
+          <p class="commerce-name">{{ category.category_name }}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+</ion-content>

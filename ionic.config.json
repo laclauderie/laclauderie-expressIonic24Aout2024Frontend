@@ -1,0 +1,7 @@
+{
+  "name": "vcpFrontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

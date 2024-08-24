@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Categories</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openEditDeleteCategoriesPage()" color="primary" [disabled]="categories.length === 0">
+        Update
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Row 1: List of Commerces and Categories -->
+  <ion-grid>
+    <ion-row class="equal-width-columns">
+      <!-- Left Column: List of Commerces -->
+      <ion-col class="left-column">
+        Commerces
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let commerce of commerces; let i = index" 
+            [ngClass]="{'highlighted': selectedCommerceIndex === i}"
+            (click)="selectCommerce(i)">
+            {{ commerce.commerce_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <!-- Right Column: List of Categories -->
+      <ion-col class="right-column">
+        Categories
+        <ion-list class="scroll-list">
+          <ion-item 
+            *ngFor="let category of categories; let i = index" 
+            [ngClass]="{'highlighted-category': selectedCategoryIndex === i}"
+            (click)="selectCategory(i)">
+            {{ category.category_name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 2: Category Image -->
+    <ion-row>
+      <ion-col>
+        <!-- Display the image of the selected category -->
+        <ion-card *ngIf="selectedCategory && selectedCategoryImage">
+          <ion-card-header>
+            <ion-card-title>Category Image</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <img [src]="selectedCategoryImage" alt="Category Image" />
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Row 3: Category Details -->
+    <ion-row>
+      <ion-col>
+        <!-- Read-only category details -->
+        <ion-card *ngIf="selectedCategory">
+          <ion-card-header>
+            <ion-card-title>Category Details</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position = "stacked">Category Name</ion-label>
+              <ion-input [value]="selectedCategory.category_name" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position = "stacked">Commerce</ion-label>
+              <ion-input [value]="selectedCategory.commerce_id" readonly></ion-input>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Floating Action Button (FAB) -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCreateCategoryModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
